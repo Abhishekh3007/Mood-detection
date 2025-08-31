@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Theme, ThemeContext } from '../../contexts/ThemeContext'
+import type { Theme } from '../../contexts/ThemeContext'
+import { ThemeContext, validThemes } from '../../contexts/ThemeContext'
 
 type Props = {
   mood: string | undefined
@@ -12,7 +13,6 @@ export default function MoodDisplay({ mood, confidence, aiResponse, motivational
   const { setTheme } = useContext(ThemeContext)
 
   // Only set theme if mood is a valid Theme
-  const validThemes: Theme[] = ['happy', 'sad', 'angry', 'disgust', 'fear', 'surprise', 'neutral']
   if (mood && validThemes.includes(mood as Theme)) {
     setTheme(mood as Theme)
   }

@@ -1,11 +1,56 @@
-# React + TypeScript + Vite
+# Frontend Documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📚 Overview
 
-Currently, two official plugins are available:
+The frontend is built with React, TypeScript, and Vite, providing a modern and responsive user interface for mood analysis and recommendations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏗 Component Structure
+
+```
+src/
+├── components/
+│   ├── Analytics/        # Analytics dashboard components
+│   ├── Auth/            # Authentication forms
+│   ├── MoodInput/       # Mood analysis input and display
+│   ├── Music/           # Music recommendation components
+│   ├── News/            # News feed components
+│   └── Themes/          # Theme management
+├── contexts/            # React contexts
+├── services/           # API services
+└── App.tsx            # Main application component
+```
+
+## 🧩 Key Components
+
+### MoodInput
+- Handles text and speech input
+- Integrates with speech recognition
+- Sends data to backend for analysis
+- Displays mood analysis results
+
+### MusicPanel
+- Displays music recommendations
+- Supports genre filtering
+- Integrates with Spotify links
+
+### NewsPanel
+- Shows mood-based news feed
+- Supports category filtering
+- Displays news sources and links
+
+### AnalyticsDashboard
+- Visualizes mood trends
+- Shows mood distribution
+- Real-time updates via Supabase
+
+## 🎨 Theme System
+
+The application uses a dynamic theming system that changes based on detected mood:
+
+- 😊 Happy: Warm, bright colors
+- 😢 Sad: Cool, calming colors
+- 😠 Angry: Intense, energetic colors
+- 😐 Neutral: Balanced, neutral colors
 
 ## Expanding the ESLint configuration
 
