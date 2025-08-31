@@ -15,3 +15,9 @@ export async function getNewsFeed(mood?: string, category?: string) {
   if (!res.ok) throw new Error('Failed to fetch news');
   return res.json();
 }
+
+export async function get(path: string) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error('GET failed');
+  return res.json();
+}

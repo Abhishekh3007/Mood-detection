@@ -3,6 +3,7 @@ import MoodInput from './components/MoodInput/MoodInput'
 import MoodDisplay from './components/MoodInput/MoodDisplay'
 import MusicPanel from './components/Music/MusicPanel'
 import NewsPanel from './components/News/NewsPanel'
+import AnalyticsDashboard from './components/Analytics/AnalyticsDashboard'
 import './index.css'
 
 export default function App() {
@@ -18,6 +19,9 @@ export default function App() {
         <div style={{flex:1}}>
           <NewsPanel mood={undefined} />
         </div>
+      </div>
+      <div style={{marginTop:30}}>
+        <AnalyticsDashboard />
       </div>
     </div>
   )

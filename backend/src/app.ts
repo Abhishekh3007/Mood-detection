@@ -6,6 +6,7 @@ import authRoutes from './routes/auth';
 import moodRoutes from './routes/mood';
 import recommendationsRoutes from './routes/recommendations';
 import newsRoutes from './routes/news';
+import analyticsRoutes from './routes/analytics';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/mood', moodRoutes);
 	app.use('/api/recommendations', recommendationsRoutes);
 	app.use('/api/news', newsRoutes);
+		app.use('/api/analytics', analyticsRoutes);
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 
