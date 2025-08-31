@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import MoodDisplay from './MoodDisplay';
 
 type Analysis = {
   emotion?: string;
@@ -15,6 +17,7 @@ const MoodInput: React.FC = () => {
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<Analysis | null>(null);
+  const { setTheme } = useContext(ThemeContext);
 
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
@@ -53,6 +56,7 @@ const MoodInput: React.FC = () => {
       const data = await res.json();
       if (data && data.analysis) {
         setResult(data.analysis);
+        if (data.analysis.emotion) setTheme(data.analysis.emotion as any);
       } else if (data && data.success && data.analysis) {
         setResult(data.analysis);
       } else {
@@ -95,12 +99,7 @@ const MoodInput: React.FC = () => {
       {isSubmitting && <div>Analyzing...</div>}
 
       {result && (
-        <div className="mt-4 p-4 border rounded">
-          <div><strong>Mood:</strong> {result.emotion}</div>
-          <div><strong>Confidence:</strong> {result.confidence}</div>
-          <div><strong>AI Response:</strong> {result.aiResponse}</div>
-          <div><strong>Quote:</strong> {result.motivationalQuote}</div>
-        </div>
+        <MoodDisplay mood={result.emotion} confidence={result.confidence} aiResponse={result.aiResponse} motivationalQuote={result.motivationalQuote} />
       )}
     </div>
   );

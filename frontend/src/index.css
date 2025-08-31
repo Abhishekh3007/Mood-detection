@@ -30,6 +30,17 @@ body {
   min-height: 100vh;
 }
 
+/* theme background defaults handled by BackgroundManager; keep body text adjustments */
+body[data-mood="happy"] {
+  color: #222;
+}
+body[data-mood="sad"] {
+  color: #102a43;
+}
+body[data-mood="angry"] {
+  color: #3b0d0d;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
