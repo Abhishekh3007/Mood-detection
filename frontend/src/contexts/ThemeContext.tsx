@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-export type Theme = 'happy' | 'sad' | 'angry' | 'disgust' | 'fear' | 'surprise' | 'neutral';
+export const validThemes = ['happy', 'sad', 'angry', 'disgust', 'fear', 'surprise', 'neutral'] as const;
+export type Theme = typeof validThemes[number];
 
-type ThemeContextShape = {
+export interface ThemeContextShape {
   theme: Theme;
   setTheme: (t: Theme) => void;
 };
