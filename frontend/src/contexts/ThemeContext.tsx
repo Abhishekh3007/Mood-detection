@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-type Theme = 'happy' | 'sad' | 'angry' | 'disgust' | 'fear' | 'surprise' | 'neutral';
+export type Theme = 'happy' | 'sad' | 'angry' | 'disgust' | 'fear' | 'surprise' | 'neutral';
 
 type ThemeContextShape = {
   theme: Theme;
