@@ -15,8 +15,12 @@ export default function LoginForm() {
       const res = await axios.post('/api/auth/login', data)
       console.log('login response', res.data)
       alert('Login response: ' + JSON.stringify(res.data))
-    } catch (err: any) {
-      alert('Login failed: ' + err.message)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert('Login failed: ' + err.message)
+      } else {
+        alert('Login failed: An unknown error occurred')
+      }
     }
   }
 

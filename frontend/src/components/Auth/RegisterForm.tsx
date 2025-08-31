@@ -17,8 +17,12 @@ export default function RegisterForm() {
       const res = await axios.post('/api/auth/register', data)
       console.log('register response', res.data)
       alert('Register response: ' + JSON.stringify(res.data))
-    } catch (err: any) {
-      alert('Register failed: ' + err.message)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert('Register failed: ' + err.message)
+      } else {
+        alert('Register failed: An unknown error occurred')
+      }
     }
   }
 

@@ -17,9 +17,10 @@ router.post('/register', async (req, res) => {
 
   if (error) return res.status(500).json({ success: false, error: error.message });
 
-  const token = jwt.sign({ userId: data?.id }, process.env.JWT_SECRET!, { expiresIn: '7d' });
+  const userId = (data as any)?.user?.id;
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET!, { expiresIn: '7d' });
 
-  return res.json({ success: true, user: { id: data?.id, email }, access_token: token });
+  return res.json({ success: true, user: { id: userId, email: (data as any)?.user?.email || email }, access_token: token });
 });
 
 // Login - verify via Supabase Auth
@@ -32,9 +33,10 @@ router.post('/login', async (req, res) => {
   if (error) return res.status(401).json({ success: false, error: error.message });
 
   // create JWT for our app sessions
-  const token = jwt.sign({ userId: data.user?.id }, process.env.JWT_SECRET!, { expiresIn: '7d' });
+  const userId = (data as any)?.user?.id;
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET!, { expiresIn: '7d' });
 
-  return res.json({ success: true, user: data.user, access_token: token });
+  return res.json({ success: true, user: (data as any)?.user, access_token: token });
 });
 
 export default router;
